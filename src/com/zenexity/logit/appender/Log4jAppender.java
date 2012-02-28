@@ -1,7 +1,5 @@
 package com.zenexity.logit.appender;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.Map;
 
 import org.apache.log4j.AppenderSkeleton;
@@ -11,7 +9,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.generators.ByteArrayBodyGenerator;
-import com.ning.http.client.generators.InputStreamBodyGenerator;
 //import com.ning.http.client.generators.
 public class Log4jAppender extends AppenderSkeleton {
 
