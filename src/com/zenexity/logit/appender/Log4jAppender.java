@@ -39,9 +39,9 @@ public class Log4jAppender extends AppenderSkeleton {
         AsyncHttpClient client = new AsyncHttpClient();
         String url = this.server + "/story/eval";
         try {
-        	System.out.println(client.preparePost(url)
+            client.preparePost(url)
         	      .addHeader("Content-type", "application/json")
-        		  .setBody(new ByteArrayBodyGenerator(json.getBytes())).execute());
+        		  .setBody(new ByteArrayBodyGenerator(json.getBytes())).execute();
         } catch (Exception e) {
         	e.printStackTrace();
         }	
