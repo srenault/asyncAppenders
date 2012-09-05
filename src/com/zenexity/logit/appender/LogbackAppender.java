@@ -34,26 +34,26 @@ public class LogbackAppender extends AppenderBase<ILoggingEvent> {
     @Override
     protected void append(ILoggingEvent event) {
         String json = this.layout.doLayout(event);
-    	Gson gson = new Gson();
-    	Map<String, String> jsonMap = gson.fromJson(json, new TypeToken<Map<String, String>>(){}.getType());
-    	jsonMap.put("project", this.project);
-    	json = gson.toJson(jsonMap);
+        Gson gson = new Gson();
+        Map<String, Object> jsonMap = gson.fromJson(json, new TypeToken<Map<String, Object>>(){}.getType());
+        jsonMap.put("project", this.project);
+        json = gson.toJson(jsonMap);
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = this.server + "/story/eval";
+        String url = this.server + "/dashboard/eval";
         try {
-        	System.out.println(client.preparePost(url)
-        	      .addHeader("Content-type", "application/json")
-        		  .setBody(new ByteArrayBodyGenerator(json.getBytes())).execute());
+            client.preparePost(url)
+                  .addHeader("Content-type", "application/json")
+                  .setBody(new ByteArrayBodyGenerator(json.getBytes())).execute();
         } catch (Exception e) {
-        	e.printStackTrace();
-        }	
+            e.printStackTrace();
+        }
     }
 
-	public void setServer(String server) {
-		this.server = server;
-	}
+    public void setServer(String server) {
+        this.server = server;
+    }
 
-	public void setProject(String project) {
-		this.project = project;
-	}
+    public void setProject(String project) {
+        this.project = project;
+    }
 }
